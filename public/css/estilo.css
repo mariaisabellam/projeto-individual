@@ -1,0 +1,663 @@
+@import url(https://db.onlinewebfonts.com/c/5aef733c1739bd2fe66f5839b7bcb428?family=Perandory+Cond);
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+
+@font-face {
+  font-family: 'Amoresa';
+  src: url('../fonts/amoresa.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TimesCond';
+  src: url('../fonts/TimesNewRomanMTStd-CondIt.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Akzidenz';
+  src: url('../fonts/BertholdAkzidenzGrotesk.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(0, 0, 0);
+}
+
+:root {
+  --tamanho-header: 80px;
+  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-footer: 65px;
+}
+
+.container {
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+
+.header {
+  background-color: black;
+  border-radius: 0px 0px 20px 20px;
+}
+
+.header .container {
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.header a {
+  text-decoration: none;
+  color: #ffffff;
+  margin-right: 20px;
+}
+
+.agora {
+  font-weight: 800;
+}
+
+.navbar {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  color: #ffffff;
+}
+
+.btn-cadastro {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  margin-left: 10px;
+  border-radius: 15px;
+  height: 30px;
+  width: 130px;
+}
+
+.btn-cadastro a {
+  color: #000;
+}
+
+/* BANNER */
+
+.banner {
+  height: var(--tamanho-banner);
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+}
+
+.banner .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.container-img {
+  height: 100%;
+  width: 55%;
+}
+
+.container-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* redimenciona para caber dentro do container e evitar disproporcao*/
+}
+
+.container-titulo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 45%;
+}
+
+.img1 {
+  /*imagem do selo e xoxo*/
+  position: absolute;
+  top: 120px;
+  right: 40px;
+  display: flex;
+}
+
+.img2 {
+  /*imagem estrela*/
+  position: absolute;
+  top: 250px;
+  right: 20px;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  height: 80%;
+  color: #000;
+}
+
+.div-txt {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.div-txt2 {
+  margin-left: 60px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.letra-mai {
+  font-family: 'Amoresa';
+  font-size: 146px;
+  line-height: 0.3;
+}
+
+.letra-min {
+  font-family: "Perandory Cond";
+  font-size: 136px;
+  font-weight: 400;
+  line-height: 0;
+  /*define altura do texto de forma vertical entre paragrafos (P)*/
+}
+
+/* MISSÃO VISÃO VALORES */
+
+.container-cards {
+  background-color: #000;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardPink {
+  border-radius: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  height: 250px;
+  display: flex;
+  width: 680px;
+  flex-direction: row;
+  background-color: #2D5199;
+  margin: 10px;
+  color: #fff;
+}
+
+.cardLana {
+  border-radius: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  height: 250px;
+  display: flex;
+  width: 680px;
+  flex-direction: row;
+  background-color: #DFD5BA;
+  margin: 10px;
+  color: #000000;
+}
+
+.cardOlivia {
+  border-radius: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  height: 254px;
+  display: flex;
+  width: 680px;
+  flex-direction: row;
+  background-color: #886DCA;
+  margin: 10px;
+  color: #fff;
+}
+
+.cardSabrina {
+  border-radius: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  height: 255px;
+  display: flex;
+  width: 680px;
+  flex-direction: row;
+  background-color: #9EABBC;
+  margin: 10px;
+  color: #fff;
+}
+
+.cardChapel {
+  border-radius: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  height: 250px;
+  display: flex;
+  width: 680px;
+  flex-direction: row;
+  background-color: #570408;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.box2 {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.box1 {
+
+  width: 50%;
+}
+
+
+.social p {
+  text-align: center;
+}
+
+
+.container-quiz {
+  height: auto;
+  background-color: #000;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+}
+
+.card-quiz {
+  margin-top: 100px;
+  border-radius: 20px;
+  background-image: url(../assets/imgs/img-quiz.png);
+  width: 67%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 10px;
+}
+
+.titulo-quiz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  height: 120px;
+  width: 270px;
+  font-family: 'TimesCond';
+  color: #ffffff;
+  font-size: 130px;
+  font-weight: 500;
+  padding-top: 10px;
+}
+
+.span-title {
+  font-size: 40px;
+  font-family: 'Akzidenz';
+  font-weight: 800;
+  font-weight: bolder;
+  color: #fff;
+}
+
+ a {
+  width: 100%;
+  text-decoration: none;
+}
+.link-quiz {
+  padding-right: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  height: 100px;
+
+
+
+}
+
+/* SOBRE MIM*/
+
+.aboutMe {
+  margin-top: 100px;
+  height: 650px;
+}
+
+.aboutMe .container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b2e46;
+}
+
+
+.div-left {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 40%;
+  background-color: #ffff;
+
+}
+
+.img-top {
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.img-top img {
+  width: 187px;
+  height: 130px;
+}
+
+.img-me{
+  display: flex;
+  justify-content: center;
+height: auto;
+width: 100%;
+}
+
+.img-me img{
+  width: 350px;
+}
+.img-bottom {
+  width: 90%;
+  height: 60px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.img-bottom img {
+  padding-left: 30px;
+  width: 97px;
+  height: 105px;
+}
+
+.div-right {
+  height: auto;
+  background-color: #ded6d6;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #000;
+  font-family: "Schoolbell", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.titulo-aboutMe {
+  align-items: center;
+
+}
+
+
+
+/* FOOTER */
+
+.footer {
+  border-top: 4px dashed #5d5682;
+  background-color: #ffffff;
+  height: 150px;
+  color: #000000;
+  display: flex;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.footer .container {
+  justify-content: center;
+  text-align: center;
+}
+
+.footer .container .version {
+  font-size: 12px;
+}
+
+/* LOGIN */
+
+.login {
+  height: var(--tamanho-login);
+  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-size: cover;
+}
+
+.login .container {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+
+
+
+.formulario {
+  display: flex;
+  height: 90%;
+  width: 80%;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.formulario span {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.formulario input {
+  border: 2px solid #32b9cd;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.formulario select {
+  border: 2px solid #32b9cd;
+  background-color: white;
+  color: gray;
+  height: 36px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 5px 0;
+}
+
+.botao {
+  cursor: pointer;
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #fff;
+  background-color: #ED145B;
+  width: 120px;
+  height: 30px;
+  align-self: center;
+  margin-top: 20px;
+}
+
+.loading-div {
+  width: 50px;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+#div_erros_login {
+  display: none
+}
+
+/* FORMULARIO */
+
+.alerta_erro {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card_erro {
+  display: none;
+  background-color: #fff;
+  color: black;
+  width: 230px;
+  position: fixed;
+  border-radius: 4px;
+  border: #ED145B 3px solid;
+  padding: 10px;
+  margin-right: 10%;
+}
+
+.card_erro #mensagem_erro {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.formulario .tipo_campo {
+  font-size: 20px;
+  font-weight: 600 !important;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 10px;
+  border: 2px solid #32b9cd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.btn {
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #ED145B;
+  width: 120px;
+  align-self: center;
+  margin-top: 5px;
+}
+
+.loading-div {
+  width: 50px;
+  margin: auto;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+/* SIMULADOR */
+
+.simulador {
+  color: white;
+}
+
+.simulador .container {
+  flex-direction: column;
+  overflow: scroll;
+  height: var(--tamanho-simulador);
+}
+
+/* ALERTA */
+
+#alerta {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.mensagem-alarme {
+  background-color: white;
+  border-radius: 5px;
+  width: 300px;
+  height: 80px;
+  margin: 10px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.mensagem-alarme h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.mensagem-alarme .informacao {
+  width: 66%;
+}
+
+.alarme-sino {
+  width: 48px;
+  height: 48px;
+  animation-name: bell;
+  animation-duration: 4s;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
+  background-size: cover;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bell {
+  0% {
+    transform: rotate(25deg)
+  }
+
+  25% {
+    transform: rotate(-25deg)
+  }
+
+  50% {
+    transform: rotate(25deg)
+  }
+
+  75% {
+    transform: rotate(-25deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
+}
