@@ -76,10 +76,6 @@
               <input id="nome_input" type="text" placeholder="Seu nome" />
             </div>
             <div class="campo">
-              <span>CPF:</span>
-              <input id="cpf_input" type="text" placeholder="Seu cpf" />
-            </div>
-            <div class="campo">
               <span>E-mail:</span>
               <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
             </div>
@@ -117,7 +113,6 @@
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
-    var cpfVar = cpf_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
@@ -134,9 +129,9 @@
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
+      confirmacaoSenhaVar == ""
       // codigoVar == "" ||
-      cpfVar == ""
+      //cpfVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -200,15 +195,7 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    if (cpfVar.length != 11) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "O CPF deve conter 11 caracteres";
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+  
 
 
 
@@ -243,7 +230,7 @@
         emailServer: emailVar,
         senhaServer: senhaVar,
         // idEmpresaVincularServer: idEmpresaVincular,
-        cpfServer: cpfVar
+        //cpfServer: cpfVar
       }),
     })
       .then(function (resposta) {

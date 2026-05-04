@@ -6,8 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
-
+    <title>Minha Dashboard</title>
     
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
@@ -29,43 +28,29 @@
 <!-- <body onload=" atualizarFeed()"> -->
 
 <body>
-
     <div class="janela">
         <div class="header-left">
-            <h1>AquaTech</h1>
-
+            <img src="../assets/imgs/logo.png" width="50px" height="50px">
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
-
             <div class="btn-nav-white">
                 <a href="./cards.html">
                     <h3>Aquários</h3>
                 </a>
             </div>
-
             <div class="btn-nav">
-
                 <h3>Gráficos</h3>
-
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
+            </div>   
+            <a href="public/quiz.html">
+            </a>
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
-
         </div>
-
         <div class="dash">
             <div id="alerta">
             </div>
-
             <div class="btns-dash" id="btnAquario">
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
             </div>
@@ -73,26 +58,18 @@
             </div>
         </div>
     </div>
-
-
 </body>
-
 </html>
-
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
     let proximaAtualizacao;
-
     window.onload = exibirAquariosDoUsuario();
-
     function exibirAquariosDoUsuario() {
         var aquarios = JSON.parse(sessionStorage.AQUARIOS);
         aquarios.forEach(item => {
             document.getElementById("btnAquario").innerHTML += `
             <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
             `
-
             document.getElementById("graficos").innerHTML += `
                 <div id="grafico${item.id}" class="display-none">
                     <h3 class="tituloGraficos">

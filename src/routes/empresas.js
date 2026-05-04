@@ -9,7 +9,7 @@ router.post("/cadastrar", function (req, res) {
 })
 
 router.get("/buscar", function (req, res) {
-    empresaController.buscarPorCnpj(req, res);
+    empresaController.buscarPorGenero(req, res);
 });
 
 router.get("/buscar/:id", function (req, res) {
