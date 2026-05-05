@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cadastro</title>
+
+  <script src="./js/sessao.js"></script>
+
+  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="icon" href="./assets/icon/logo.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body>
+  <!--header inicio-->
+  <div class="header">
+    <div class="container">
+      <div class="img-logo"><img src="./assets/imgs/logo.png" alt="logo" width="40px" height="40px"></div>
+      <ul class="navbar">
+        <li>
+          <a href="index.html">HOME</a>
+        </li>
+        <br>
+        <li>
+          <a href="quiz.html">QUIZ</a>
+        </li>
+        <br>
+        <li>
+          <a href="login.html">LOGIN</a>
+        </li>
+        <br>
+        <li class="agora">
+          <button class="btn-cadastro"><a href="cadastro.html">
+        <li class="agora">CADASTRO</li></a></button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--header fim-->
+
+  <div class="cadastro">
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span>
+      </div>
+    </div>
+    <div class="container">
+      <div class="imgSticker1">
+        <img src="/assets/imgs/coracao.png" width="90px">
+      </div>
+      <div class="imgSticker">
+        <img src="/assets/imgs/selo.png" width="90px">
+      </div>
+      <div class="imgLogin">
+        <img src="/assets/imgs/img-chapel2.jpg" width="480px">
+      </div>
+      <div class="card card-cadastro">
+        <div class="formulario">
+          <div class="titulo-form">
+            <p>CADASTRE-SE</p>
+          </div>
+            <div class="campos-formulario">
+                <div class="campo">
+                  <span>Artista Favorito:</span>
+                  <input id="artista_input" type="text" />
+                </div>
+                <div class="campo">
+                  <span>Gênero Favorito:</span>
+                  <input id="genero_input" type="text" />
+                </div>
+                <div class="campo">
+                  <span>Década Favorita:</span>
+                  <input id="decada_input" type="text" />
+                </div>
+            </div>
+        </div>
+    </div>
+            
+</body>
+</html>

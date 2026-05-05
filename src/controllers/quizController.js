@@ -17,6 +17,25 @@ function salvarResultado(req, res) {
             });
     }
 
+function listarArtistas(req, res) {
+    quizModel.listarArtistas().then(resultado => {
+        res.json(resultado)
+    })
+}
+function listarDecadas(req, res) {
+    quizModel.listarDecadas().then(resultado => {
+        res.json(resultado)
+    })
+}
+function listarGeneros(req, res) {
+    quizModel.listarGeneros().then(resultado => {
+        res.json(resultado)
+    })
+}
+
 module.exports = {
-    salvarResultado
+    salvarResultado,
+    listarArtistas,
+    listarDecadas,
+    listarGeneros
 };

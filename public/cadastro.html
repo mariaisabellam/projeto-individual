@@ -21,20 +21,21 @@
     <div class="container">
       <div class="img-logo"><img src="./assets/imgs/logo.png" alt="logo" width="40px" height="40px"></div>
       <ul class="navbar">
-      <li>
-        <a href="index.html">HOME</a>
-      </li>
-      <br>
-      <li>
-        <a href="quiz.html">QUIZ</a>
-      </li>
-      <br>
-      <li>
-        <a href="login.html">LOGIN</a>
-      </li>
-      <br>
+        <li>
+          <a href="index.html">HOME</a>
+        </li>
+        <br>
+        <li>
+          <a href="quiz.html">QUIZ</a>
+        </li>
+        <br>
+        <li>
+          <a href="login.html">LOGIN</a>
+        </li>
+        <br>
         <li class="agora">
-          <button class="btn-cadastro"><a href="cadastro.html"><li class="agora">CADASTRO</li></a></button>
+          <button class="btn-cadastro"><a href="cadastro.html">
+        <li class="agora">CADASTRO</li></a></button>
         </li>
       </ul>
     </div>
@@ -48,12 +49,12 @@
       </div>
     </div>
     <div class="container">
-       <div class="imgSticker1">
-                <img src="/assets/imgs/coracao.png" width="90px">
-            </div>
-            <div class="imgSticker">
-                <img src="/assets/imgs/selo.png" width="90px">
-            </div>
+      <div class="imgSticker1">
+        <img src="/assets/imgs/coracao.png" width="90px">
+      </div>
+      <div class="imgSticker">
+        <img src="/assets/imgs/selo.png" width="90px">
+      </div>
       <div class="imgLogin">
         <img src="/assets/imgs/img-chapel2.jpg" width="480px">
       </div>
@@ -62,33 +63,31 @@
           <div class="titulo-form">
             <p>CADASTRE-SE</p>
           </div>
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <div class="campos-formulario">
-            <!-- <div class="campo">
+            <div class="campos-formulario">
+              <!-- <div class="campo">
               <span>Código de ativação:</span>
               <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
             </div> -->
-            <div class="campo">
-              <span>Nome:</span>
-              <input id="nome_input" type="text" placeholder="Seu nome" />
+              <div class="campo">
+                <span>Nome:</span>
+                <input id="nome_input" type="text" placeholder="Seu nome" />
+              </div>
+              <div class="campo">
+                <span>E-mail:</span>
+                <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+              </div>
+              <div class="campo">
+                <span>Senha:</span>
+                <input id="senha_input" type="password" placeholder="******" />
+              </div>
+              <div class="campo">
+                <span>Confirmação da Senha:</span>
+                <input id="confirmacao_senha_input" type="password" placeholder="******" />
+              </div>
+              
             </div>
-            <div class="campo">
-              <span>E-mail:</span>
-              <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-            </div>
-            <div class="campo">
-              <span>Senha:</span>
-              <input id="senha_input" type="password" placeholder="******" />
-            </div>
-            <div class="campo">
-              <span>Confirmação da Senha:</span>
-              <input id="confirmacao_senha_input" type="password" placeholder="******" />
-            </div>
-            <button class="botao" onclick="cadastrar()">Cadastrar</button>
-          </div>
+           
+          <button class="botao" onclick="cadastrar()">Cadastrar</button>
           <div id="div_aguardar" class="loading-div">
             <img src="./assets/circle-loading.gif" id="loading-gif" />
           </div>
@@ -195,7 +194,7 @@
       setInterval(sumirMensagem, 5000);
     }
 
-  
+
 
 
 
@@ -261,24 +260,24 @@
   }
 
   // Listando empresas cadastradas 
- /* function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  } */
+  /* function listar() {
+     fetch("/empresas/listar", {
+       method: "GET",
+     })
+       .then(function (resposta) {
+         resposta.json().then((empresas) => {
+           empresas.forEach((empresa) => {
+             listaEmpresasCadastradas.push(empresa);
+ 
+             console.log("listaEmpresasCadastradas")
+             console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+           });
+         });
+       })
+       .catch(function (resposta) {
+         console.log(`#ERRO: ${resposta}`);
+       });
+   } */
 
   function sumirMensagem() {
     cardErro.style.display = "none";

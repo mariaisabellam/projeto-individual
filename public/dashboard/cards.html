@@ -17,7 +17,7 @@
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
-<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+<body onload="validarSessao() //, exibirAquarios(),  atualizacaoPeriodica()">
     <div class="janela">
         <div class="header-left dash-header">
 
@@ -25,7 +25,7 @@
              <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
-            <div class="btn-nav">
+            <!-- <div class="btn-nav">
                 <h3>Aquários</h3>
             </div>
             <div class="btn-nav-white">
@@ -37,7 +37,7 @@
                 <a href="./mural.html">
                     <h3>Mural de Avisos</h3>
                 </a>
-            </div>
+            </div> -->
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
@@ -127,6 +127,7 @@
 </body>
 
 <script>
+
     const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
@@ -175,58 +176,21 @@
         }
     });
 
-    const ctx2 = document.getElementById('myChart2');
+fetch("/quiz/artistas") // grafico ARTISTAS
+    .then(res => res.json())
+    
+    .then(dados => {
+         const ctx2 = document.getElementById('myChart2');
+    const labels = dados.map(item => item.artista);
+    const valores = dados.map(item => item.total);
 
     new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: ['Artistas'],
+            labels: labels,
             datasets: [{
-                label: 'Lana Del Rey',
-                borderColor: '#e643b7',
-                backgroundColor: '#e643b7',
-                data: [30],
-                borderWidth: 3
-            },
-            {
-                label: 'Olivia Rodrigo',
-                borderColor: 'rgb(31, 37, 120)',
-                backgroundColor: 'rgb(31, 37, 120)',
-                data: [40],
-                borderWidth: 3
-
-            },
-            {
-                label: 'Sabrina Carpenter',
-                borderColor: 'rgb(31, 37, 120)',
-                backgroundColor: 'rgb(31, 37, 120)',
-                data: [30],
-                borderWidth: 3
-
-            },
-            {
-                label: 'Chappell Roan',
-                borderColor: 'rgb(31, 37, 120)',
-                backgroundColor: 'rgb(31, 37, 120)',
-                data: [24],
-                borderWidth: 3
-
-            },
-            {
-                label: 'Pink Pantheress',
-                borderColor: 'rgb(31, 37, 120)',
-                backgroundColor: 'rgb(31, 37, 120)',
-                data: [14],
-                borderWidth: 3
-
-            },
-            {
-                label: 'outro',
-                borderColor: 'rgb(31, 37, 120)',
-                backgroundColor: 'rgb(31, 37, 120)',
-                data: [2],
-                borderWidth: 3
-
+                label: 'Artistas Favoritos',
+                data: valores
             }
             ]
         },
@@ -238,52 +202,26 @@
             }
         }
     });
+    })
+   
+fetch("/quiz/generos") 
+  .then(res => res.json())
+  .then(dados => {
+
+    const labels = dados.map(item => item.genero);
+    const valores = dados.map(item => item.total);
+
     const ctx3 = document.getElementById('myChart3');
 
     new Chart(ctx3, {
         type: 'bar',
         data: {
-            labels: ['Gênero'],
+            labels: labels,
             datasets: [{
-                label: 'Pop',
-                borderColor: '#9e375f',
-                backgroundColor: '#9e375f',
-                data: [80],
+                label: 'Gêneros Preferidos',
+                data: valores,
                 borderWidth: 3
-            },
-            {
-                label: 'Rock',
-                borderColor: 'rgb(31, 37, 120)',
-                backgroundColor: 'rgb(31, 37, 120)',
-                data: [82],
-                borderWidth: 3
-
-            },
-            {
-                label: 'MPB',
-                borderColor: 'rgb(31, 37, 120)',
-                backgroundColor: 'rgb(31, 37, 120)',
-                data: [83],
-                borderWidth: 3
-
-            },
-            {
-                label: 'Funk',
-                borderColor: 'rgb(31, 37, 120)',
-                backgroundColor: 'rgb(31, 37, 120)',
-                data: [76],
-                borderWidth: 3
-
-            },
-            {
-                label: 'Indie',
-                borderColor: 'rgb(31, 37, 120)',
-                backgroundColor: 'rgb(31, 37, 120)',
-                data: [80],
-                borderWidth: 3
-
-            }
-            ]
+            }]
         },
         options: {
             scales: {
@@ -292,19 +230,27 @@
                 }
             }
         }
-    });
-    
+    })
+    })
+// -- --- - -- - --- - - --
+fetch("/quiz/decadas")
+  .then(res => res.json())
+  .then(dados => {
+
+    const labels = dados.map(item => item.decada);
+    const valores = dados.map(item => item.total);
+
     const ctx4 = document.getElementById('myChart4');
 
     new Chart(ctx4, {
         type: 'bar',
         data: {
-            labels: ['60', '70', '80', '90', '2000', '2010'],
+            labels: labels,
             datasets: [{
                 label: 'Década',
                 borderColor: 'rgb(181, 22, 22)',
                 backgroundColor: 'rgb(181, 22, 22)',
-                data: [10, 20, 30,20,50,40,10],
+                data: valores,
                 borderWidth: 1
             }]
         },
@@ -315,26 +261,28 @@
                 }
             }
         }
+    })
     });
     
 
-    function exibirAquarios() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div>
-                    `
-        });
-    }
+    // function exibirAquarios() {
+    //     if (!sessionStorage.AQUARIOS) return;
+    //     JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
+    //         document.getElementById("cardAquarios").innerHTML += `
+    //                 <div class="card-aquario">
+    //                     <div class="title-aquario">
+    //                         <h1>${item.descricao}</h1>
+    //                     </div>
+    //                     <div class="desc-aquario">
+    //                     <div class="temperatura">
+    //                         <p id="temp_aquario_${item.id}">-°C</p>
+    //                     </div>
+    //                     <div class="cor-alerta" id="card_${item.id}"></div>
+    //                 </div>
+    //                 </div>
+    //                 `
+    //     });
+    // }
 
 </script>
 

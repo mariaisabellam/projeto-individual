@@ -36,7 +36,7 @@
     <div class="container-perguntas">
       <div id="pontuacaoEJogo">
         <span id="titulo-quiz-quiz">Quiz</span>
-        <h1 id="titulo-quiz">O que você sabe sobre a música POP?</h1>
+        <h1 id="titulo-quiz">Descubra seu perfil musical!</h1>
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">
           <img src="https://api.iconify.design/arcticons:discogs.svg" width="24" height="24"/>
           <span class="btn-comecar">Começar</span>
@@ -121,29 +121,29 @@
   const listaDeQuestoes = [
 
     {
-      pergunta: "Qual mês tem 30 dias?",
-      alternativaA: "Janeiro",
-      alternativaB: "Dezembro",
-      alternativaC: "Junho",
-      alternativaD: "Agosto",
+      pergunta: "Quando você ouve música, você..",
+      alternativaA: "Dança e canta como se estivesse no palco",
+      alternativaB: "Fecha os olhos e sente cada nota",
+      alternativaC: "Começa a analisar cada parte da música",
+      alternativaD: "Pega um instrumento e tenta tocar junto",
       alternativaCorreta: "alternativaC"
     },
 
     {
-      pergunta: "Quantas horas tem em um dia?",
-      alternativaA: "30 horas",
-      alternativaB: "38 horas",
-      alternativaC: "48 horas",
-      alternativaD: "24 horas",
+      pergunta: "Seu instrumento musical ideal seria:",
+      alternativaA: "Microfone",
+      alternativaB: "Violino",
+      alternativaC: "Guitarra",
+      alternativaD: "Violão",
       alternativaCorreta: "alternativaD"
     },
 
     {
-      pergunta: "Qual destes números é ímpar?",
-      alternativaA: "Dez",
-      alternativaB: "Doze",
-      alternativaC: "Oito",
-      alternativaD: "Onze",
+      pergunta: "Seu artista favorito é..",
+      alternativaA: "Lana Del Rey",
+      alternativaB: "Sabrina Carpenter",
+      alternativaC: "PinkPantheress",
+      alternativaD: "Olivia Rodrigo",
       alternativaCorreta: "alternativaD"
     }
 
@@ -361,6 +361,7 @@
         })
         .then(function (resposta) {
           if (resposta.ok) {
+            sessionStorage.PONTUACAO = pontuacaoFinal;
             console.log("O resultado foi salvo com sucesso");
           } else {
             console.log("Erro ao salvar o resultado")
@@ -369,7 +370,7 @@
         .catch(function (erro) {
         console.log("Erro na requisição:", erro);
         })
-  }
+    }
 
  
 </script>
