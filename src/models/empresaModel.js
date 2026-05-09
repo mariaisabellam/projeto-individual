@@ -13,7 +13,7 @@ function listar() {
 }
 
 function buscarPorGenero(generoMusical) {
-  var instrucaoSql = `SELECT * FROM empresa WHERE generoMusical = '${generoMusical}'`;
+  var instrucaoSql = `SELECT * FROM resultado WHERE generoMusical = '${generoMusical}'`;
 
   return database.executar(instrucaoSql);
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -14,363 +14,247 @@
     <div class="container">
       <div class="img-logo"><img src="./assets/imgs/logo.png" alt="logo" width="40px" height="40px"></div>
       <ul class="navbar">
-        <li>
-          <a href="index.html">HOME</a>
-        </li>
-        <br>
-        <li class="agora">
-          <a href="quiz.html">QUIZ</a>
-        </li>
-        <br>
-        <li>
-          <a href="login.html">LOGIN</a>
-        </li>
-        <br>
-        <li>
-          <button class="btn-cadastro"><a href="cadastro.html">CADASTRO</a></button>
-        </li>
+        <li><a href="index.html">HOME</a></li>
+        <li class="agora"><a href="quiz.html">QUIZ</a></li>
+        <li><a href="login.html">LOGIN</a></li>
+        <li><button class="btn-cadastro"><a href="cadastro.html">CADASTRO</a></button></li>
       </ul>
     </div>
   </div>
+
   <div class="quiz-container">
     <div class="container-perguntas">
       <div id="pontuacaoEJogo">
         <span id="titulo-quiz-quiz">Quiz</span>
         <h1 id="titulo-quiz">Descubra seu perfil musical!</h1>
+
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">
-          <img src="https://api.iconify.design/arcticons:discogs.svg" width="24" height="24"/>
+          <img src="https://api.iconify.design/arcticons:discogs.svg" width="24" height="24" />
           <span class="btn-comecar">Começar</span>
         </button>
 
         <div id="jogo" class="width-fit-content flex-colunar border-secondary">
-
           <div id="infoQuestao" class="padding-8">
-            <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span>/<span id="qtdQuestoes"></span>
-            </span>
+            <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span>/<span id="qtdQuestoes"></span></span>
           </div>
+
           <div id="perguntaDaQuestaoAtual" class="padding-8">
             <span id="spanQuestaoExibida" class="text-bold"></span>
           </div>
-
-
 
           <div id="opcoes" class="flex-colunar padding-8">
             <div id="infoAlternativas" class="padding-8">
               <span><em>Escolha uma opção dentre as abaixo:</em></span>
             </div>
-            <div class="opcoes">
-            <span>
-              <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-              <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-            </span>
-            <span>
-              <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-              <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-            </span>
-            <span>
-              <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-              <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-            </span>
-            <span>
-              <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-              <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-            </span>
+
+            <div class="opcoes2">
+              <div class="card-opcao">
+                <span>
+                  <input type="radio" id="opcao1" name="option" class="radio" value="0" />
+                  <label for="opcao1" class="option" id="labelOpcao1"></label>
+                </span>
+              </div>
+              <div class="card-opcao">
+                <span>
+                  <input type="radio" id="opcao2" name="option" class="radio" value="1" />
+                  <label for="opcao2" class="option" id="labelOpcao2"></label>
+                </span>
+              </div>
+              <div class="card-opcao">
+                <span>
+                  <input type="radio" id="opcao3" name="option" class="radio" value="2" />
+                  <label for="opcao3" class="option" id="labelOpcao3"></label>
+                </span>
+              </div>
+              <div class="card-opcao">
+                <span>
+                  <input type="radio" id="opcao4" name="option" class="radio" value="3" />
+                  <label for="opcao4" class="option" id="labelOpcao4"></label>
+                </span>
+              </div>
             </div>
           </div>
 
           <div id="pontuacao" class="card-pontuacao">
             <div class="resultado">
-              <span> Parabéns por concluir!</span>
-              <span id="titulo-resultado">Seu resultado foi:</span>
-            </div>
-            <div class="container-pontuacoes">
-              <div id="pontuacaoDuranteJogo" class="pontuacaoDurante">
-                
-                <span class="width-fit-content">Quantidade de acertos: 
-                  <br>
-                  <span id="spanCertas"></span>
-                </span> <br>
-                <span class="width-fit-content">Quantidade de erros: 
-                  <br> 
-                  <span id="spanErradas"></span>
-                </span>
-              </div>
-              <div id="pontuacaoFinalJogo" class="pontuacaoTotal">
-                <span id="msgFinal" class="width-fit-content">***</span> <br>
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                  <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <br>
-              </div>
+              <span>Parabéns por concluir!</span>
+              <span id="titulo-resultado">Seu perfil musical foi registrado!</span>
             </div>
             <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+            <button onclick="verResultado()" id="btnVerResultado" disabled>Ver resultado</button>
           </div>
+
           <div id="botoes" class="flex-colunar padding-8">
             <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-            <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-            <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+            <button onclick="avancar()" id="btnProx">Avançar para próxima questão</button>
           </div>
         </div>
+
       </div>
     </div>
-
+  </div>
 </body>
 
-</html>
 <script>
+  /*
+    Cada alternativa tem: texto (exibido), artista (ou null), genero (ou null).
+    Quando o usuário escolhe "Outro" em artista → artista: "Outro"
+    Quando o usuário escolhe "Outro" em gênero  → genero: "Outro"
+    Ambos aparecem normalmente nos gráficos da dashboard.
+    Alternativas de perguntas de comportamento não têm artista nem gênero → null → não contam nos gráficos.
+  */
   const listaDeQuestoes = [
-
     {
-      pergunta: "Quando você ouve música, você..",
-      alternativaA: "Dança e canta como se estivesse no palco",
-      alternativaB: "Fecha os olhos e sente cada nota",
-      alternativaC: "Começa a analisar cada parte da música",
-      alternativaD: "Pega um instrumento e tenta tocar junto",
-      alternativaCorreta: "alternativaC"
+      pergunta: "Quando você ouve música, você...",
+      alternativas: [
+        { texto: "Dança e canta como se estivesse no palco", artista: null, genero: null },
+        { texto: "Fecha os olhos e sente cada nota", artista: null, genero: null },
+        { texto: "Começa a analisar cada parte da música", artista: null, genero: null },
+        { texto: "Pega um instrumento e toca junto", artista: null, genero: null }
+      ]
     },
-
-    {
-      pergunta: "Seu instrumento musical ideal seria:",
-      alternativaA: "Microfone",
-      alternativaB: "Violino",
-      alternativaC: "Guitarra",
-      alternativaD: "Violão",
-      alternativaCorreta: "alternativaD"
-    },
-
     {
       pergunta: "Seu artista favorito é..",
-      alternativaA: "Lana Del Rey",
-      alternativaB: "Sabrina Carpenter",
-      alternativaC: "PinkPantheress",
-      alternativaD: "Olivia Rodrigo",
-      alternativaCorreta: "alternativaD"
+      alternativas: [
+        { texto: "Lana Del Rey", artista: "Lana Del Rey", genero: null },
+        { texto: "Sabrina Carpenter", artista: "Sabrina Carpenter", genero: null },
+        { texto: "PinkPantheress", artista: "PinkPantheress", genero: null },
+        { texto: "Chappell Roan", artista: "Chappell Roan", genero: null },
+        { texto: "Olivia Rodrigo", artista: "Olivia Rodrigo", genero: null },
+        { texto: "Outro", artista: "Outro", genero: null }
+      ]
+    },
+    {
+      pergunta: "Qual gênero você mais ouve?",
+      alternativas: [
+        { texto: "Pop", artista: null, genero: "Pop" },
+        { texto: "Rock", artista: null, genero: "Rock" },
+        { texto: "Indie", artista: null, genero: "Indie" },
+        { texto: "Outro", artista: null, genero: "Outro" }
+      ]
     }
+  ];
 
-  ]
-
-  // variáveis globais    
-  let numeroDaQuestaoAtual = 0
-  let pontuacaoFinal = 0
-  let tentativaIncorreta = 0
-  let certas = 0
-  let erradas = 0
-  let quantidadeDeQuestoes = listaDeQuestoes.length
-  // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
-
+  let numeroDaQuestaoAtual = 0;
+  let indiceSelecionado = null;
 
   function onloadEsconder() {
-    document.getElementById('jogo').style.display = "none"
-    document.getElementById('pontuacao').style.display = "none"
+    document.getElementById('jogo').style.display = "none";
+    document.getElementById('pontuacao').style.display = "none";
   }
+
   function validarSessaoQuiz() {
-    var idUsuario = sessionStorage.ID_USUARIO;
-
-    if (idUsuario == null) {
-      alert("Faça o login para acessar o quiz!")
+    if (!sessionStorage.ID_USUARIO) {
+      alert("Faça o login para acessar o quiz!");
       window.location = "login.html";
-    } 
-}
+    }
+  }
+
   function iniciarQuiz() {
-    document.getElementById('pontuacao').style.display = "none"
-    document.getElementById('jogo').style.display = "flex"
-    document.getElementById('btnIniciarQuiz').style.display = "none"
-    document.getElementById('titulo-quiz').style.display = "none"
-    document.getElementById('titulo-quiz-quiz').style.display = "none"
+    document.getElementById('pontuacao').style.display = "none";
+    document.getElementById('jogo').style.display = "flex";
+    document.getElementById('btnIniciarQuiz').style.display = "none";
+    document.getElementById('titulo-quiz').style.display = "none";
+    document.getElementById('titulo-quiz-quiz').style.display = "none";
+    document.getElementById('qtdQuestoes').innerHTML = listaDeQuestoes.length;
 
+    numeroDaQuestaoAtual = 0;
+    exibirQuestao(0);
 
-    document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
-
-    preencherHTMLcomQuestaoAtual(0)
-
-    btnSubmeter.disabled = false
-    btnProx.disabled = true
-    // btnConcluir.disabled = true
-    btnTentarNovamente.disabled = true
+    document.getElementById('btnSubmeter').disabled = false;
+    document.getElementById('btnProx').disabled = true;
   }
 
-  function preencherHTMLcomQuestaoAtual(index) {
-    habilitarAlternativas(true)
-    const questaoAtual = listaDeQuestoes[index]
-    numeroDaQuestaoAtual = index
-    console.log("questaoAtual")
-    console.log(questaoAtual)
-    document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
-    document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
-    document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
-    document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
-    document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
-    document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+  function exibirQuestao(index) {
+    indiceSelecionado = null;
+    desmarcarRadioButtons();
+
+    const questao = listaDeQuestoes[index];
+    document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = index + 1;
+    document.getElementById("spanQuestaoExibida").innerHTML = questao.pergunta;
+    document.getElementById("labelOpcao1").innerHTML = questao.alternativas[0].texto;
+    document.getElementById("labelOpcao2").innerHTML = questao.alternativas[1].texto;
+    document.getElementById("labelOpcao3").innerHTML = questao.alternativas[2].texto;
+    document.getElementById("labelOpcao4").innerHTML = questao.alternativas[3].texto;
+
+    habilitarAlternativas(true);
   }
 
-  function submeter() {
-    const options = document.getElementsByName("option"); // recupera alternativas no html
-
-    let hasChecked = false
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].checked) {
-        hasChecked = true
-        break
-      }
-    }
-
-    if (!hasChecked) {
-      alert("Não há alternativas escolhidas. Escolha uma opção.")
-    } else {
-      btnSubmeter.disabled = true
-      btnProx.disabled = false
-
-      habilitarAlternativas(false)
-
-      checarResposta()
-    }
-  }
-
-  function habilitarAlternativas(trueOrFalse) {
-    let opcaoEscolhida = trueOrFalse ? false : true
-
-    primeiraOpcao.disabled = opcaoEscolhida
-    segundaOpcao.disabled = opcaoEscolhida
-    terceiraOpcao.disabled = opcaoEscolhida
-    quartaOpcao.disabled = opcaoEscolhida
-
-  }
-
-  function avancar() {
-    btnProx.disabled = true
-    btnSubmeter.disabled = false
-
-    desmarcarRadioButtons()
-
-    if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-      preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-    } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-      alert("Atenção... a próxima é a ultima questão!")
-      preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-    } else {
-      finalizarJogo()
-    }
-    limparCoresBackgroundOpcoes()
-  }
-
-  function tentarNovamente() {
-    // atualiza a página
-    window.location.reload()
-  }
-
-  function checarResposta() {
-    const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-    const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
-
-    const options = document.getElementsByName("option"); // recupera alternativas no html
-
-    let alternativaCorreta = null // variável para armazenar a alternativa correta
-
-    options.forEach((option) => {
-      if (option.value === respostaQuestaoAtual) {
-        console.log("alternativaCorreta está no componente: " + alternativaCorreta)
-        alternativaCorreta = option.labels[0].id
-      }
-    })
-
-    // verifica se resposta assinalada é correta
-    options.forEach((option) => {
-      if (option.checked === true && option.value === respostaQuestaoAtual) {
-        document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-        pontuacaoFinal++
-        certas++
-        document.getElementById("spanCertas").innerHTML = certas
-        numeroDaQuestaoAtual++
-      } else if (option.checked && option.value !== respostaQuestaoAtual) {
-        const wrongLabelId = option.labels[0].id
-
-        document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-        document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-        tentativaIncorreta++
-        erradas++
-        document.getElementById("spanErradas").innerHTML = erradas
-        numeroDaQuestaoAtual++
-      }
-    })
-  }
-
-  function limparCoresBackgroundOpcoes() {
-    const options = document.getElementsByName("option");
-    options.forEach((option) => {
-      document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-      document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
-    })
+  function habilitarAlternativas(habilitar) {
+    ["opcao1", "opcao2", "opcao3", "opcao4"].forEach(id => {
+      document.getElementById(id).disabled = !habilitar;
+    });
   }
 
   function desmarcarRadioButtons() {
-    const options = document.getElementsByName("option");
-    for (let i = 0; i < options.length; i++) {
-      options[i].checked = false;
+    document.getElementsByName("option").forEach(r => r.checked = false);
+  }
+
+  function submeter() {
+    const opcoes = document.getElementsByName("option");
+    let escolhida = null;
+    opcoes.forEach(opcao => {
+      if (opcao.checked) escolhida = parseInt(opcao.value);
+    });
+
+    if (escolhida === null) {
+      alert("Escolha uma opção antes de submeter.");
+      return;
+    }
+
+    indiceSelecionado = escolhida;
+    document.getElementById('btnSubmeter').disabled = true;
+    document.getElementById('btnProx').disabled = false;
+    habilitarAlternativas(false);
+
+    const alternativa = listaDeQuestoes[numeroDaQuestaoAtual].alternativas[indiceSelecionado];
+
+    fetch("/quiz/salvarResposta", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        idUsuario: sessionStorage.ID_USUARIO,
+        artista: alternativa.artista,
+        genero: alternativa.genero
+      })
+    })
+      .then(res => { if (!res.ok) console.error("Erro ao salvar resposta"); })
+      .catch(err => console.error("Erro na requisição:", err));
+  }
+
+  function avancar() {
+    numeroDaQuestaoAtual++;
+
+    if (numeroDaQuestaoAtual < listaDeQuestoes.length) {
+      if (numeroDaQuestaoAtual === listaDeQuestoes.length - 1) {
+        alert("Atenção... a próxima é a última questão!");
+      }
+      exibirQuestao(numeroDaQuestaoAtual);
+      document.getElementById('btnSubmeter').disabled = false;
+      document.getElementById('btnProx').disabled = true;
+    } else {
+      finalizarJogo();
     }
   }
 
   function finalizarJogo() {
-    document.getElementById('pontuacao').style.display = "flex"
-    document.getElementById('opcoes').style.display = "none"
-    document.getElementById('infoQuestao').style.display = "none"
-    document.getElementById('perguntaDaQuestaoAtual').style.display = "none"
-    document.getElementById('infoAlternativas').style.display = "none"
-    document.getElementById('botoes').style.display = "none"
+    document.getElementById('pontuacao').style.display = "flex";
+    document.getElementById('opcoes').style.display = "none";
+    document.getElementById('infoQuestao').style.display = "none";
+    document.getElementById('perguntaDaQuestaoAtual').style.display = "none";
+    document.getElementById('infoAlternativas').style.display = "none";
+    document.getElementById('botoes').style.display = "none";
+    document.getElementById('btnTentarNovamente').disabled = false;
+    document.getElementById('btnVerResultado').disabled = false;
+  }
 
-    let textoParaMensagemFinal = null
-    let classComCoresParaMensagemFinal = null
-    const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+  function tentarNovamente() {
+    window.location.reload();
+  }
+  function verResultado() {
+    window.location = "./dashboard/dashboard.html";
 
-    if (porcentagemFinalDeAcertos <= 0.3) {
-      textoParaMensagemFinal = "Parece que você não estudou..."
-      classComCoresParaMensagemFinal = "text-danger-with-bg"
-    }
-    else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-      textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-      classComCoresParaMensagemFinal = "text-warning-with-bg"
-    }
-    else if (porcentagemFinalDeAcertos >= 0.9) {
-      textoParaMensagemFinal = "Uau, parabéns!"
-      classComCoresParaMensagemFinal = "text-success-with-bg"
-    }
-    
-    textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
-
-
-    document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-    document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
-    document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
-
-    document.getElementById('jogo').classList.add("text-new-gray")
-
-    btnProx.disabled = true
-    btnSubmeter.disabled = true
-    // btnConcluir.disabled = true
-    btnTentarNovamente.disabled = false
-
-    console.log("ID usuário:", sessionStorage.ID_USUARIO);
-     fetch("/quiz/salvarResultado", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                idUsuarioServer: sessionStorage.ID_USUARIO, // identificar qual usuario é
-                pontuacaoServer: pontuacaoFinal
-            })
-        })
-        .then(function (resposta) {
-          if (resposta.ok) {
-            sessionStorage.PONTUACAO = pontuacaoFinal;
-            console.log("O resultado foi salvo com sucesso");
-          } else {
-            console.log("Erro ao salvar o resultado")
-          }
-        })
-        .catch(function (erro) {
-        console.log("Erro na requisição:", erro);
-        })
-    }
-
- 
+  }
 </script>
+
+</html>

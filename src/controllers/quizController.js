@@ -1,41 +1,59 @@
 var quizModel = require("../models/quizModel");
 
-function salvarResultado(req, res) {
-    var idUsuario = req.body.idUsuarioServer;
-    var pontuacao = req.body.pontuacaoServer;
+function salvarResposta(req, res) {
+    var idUsuario = req.body.idUsuario;
+    var artista   = req.body.artista   || null;
+    var genero    = req.body.genero    || null;
 
-    if (idUsuario == undefined || pontuacao == undefined) {
-        res.status(400).send("Dados do usuário undefined");
+    if (!idUsuario) {
+        return res.status(400).send("ID do usuário não informado");
     }
-    quizModel.salvarResultado(idUsuario, pontuacao)
-            .then(function (resultado) {
-                res.json(resultado);
-            })
-            .catch(function (erro) {
-                console.log(erro);
-                res.status(500).json(erro.sqlMessage);
-            });
-    }
+
+    quizModel.salvarResposta(idUsuario, artista, genero)
+        .then(() => res.json({ mensagem: "Resposta salva com sucesso" }))
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+// Dashboard 
 
 function listarArtistas(req, res) {
-    quizModel.listarArtistas().then(resultado => {
-        res.json(resultado)
-    })
+    quizModel.listarArtistas()
+        .then(resultado => res.json(resultado))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
 }
-function listarDecadas(req, res) {
-    quizModel.listarDecadas().then(resultado => {
-        res.json(resultado)
-    })
-}
+
 function listarGeneros(req, res) {
-    quizModel.listarGeneros().then(resultado => {
-        res.json(resultado)
-    })
+    quizModel.listarGeneros()
+        .then(resultado => res.json(resultado))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
+}
+
+function listarInteracoesPorHora(req, res) {
+    quizModel.listarInteracoesPorHora()
+        .then(resultado => res.json(resultado))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
+}
+
+function listarUsuariosPorHora(req, res) {
+    quizModel.listarUsuariosPorHora()
+        .then(resultado => res.json(resultado))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
+}
+
+function listarTotais(req, res) {
+    quizModel.listarTotais()
+        .then(resultado => res.json(resultado[0]))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
 }
 
 module.exports = {
-    salvarResultado,
+    salvarResposta,
     listarArtistas,
-    listarDecadas,
-    listarGeneros
+    listarGeneros,
+    listarInteracoesPorHora,
+    listarUsuariosPorHora,
+    listarTotais
 };

@@ -1,6 +1,35 @@
 /* pagina mural */
+@import url(https://db.onlinewebfonts.com/c/5aef733c1739bd2fe66f5839b7bcb428?family=Perandory+Cond);
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@font-face {
+  font-family: 'Amoresa';
+  src: url('../fonts/amoresa.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TimesCond';
+  src: url('../fonts/TimesNewRomanMTStd-CondIt.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Akzidenz';
+  src: url('../fonts/BertholdAkzidenzGrotesk.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Railey';
+  src: url('../fonts/Railey.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 body {
   margin: 0;
@@ -24,6 +53,14 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.div-canvas{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: row;
+}
 
 .dash-right .avisos .container .div-form {
   width: 95%;
@@ -45,7 +82,7 @@ body {
 .dash-right .avisos .div-form textarea {
   width: 95%;
   border: 3px solid #e6005a;
-  background-color: white;
+  background-color: rgb(235, 184, 184);
   border-radius: 5px;
 }
 
@@ -112,38 +149,41 @@ body {
 /* pagina graficos */
 
 .dash-header {
-  background-color: #bd718e;
+  background-color: #880b3b;
 }
 
 .dash {
-  width: 85%;
+  width: 70%;
   position: relative;
   top: 0;
-  left: 15%;
-  background-color: #131313;
-  height: 100vh;
-  overflow: auto;
+  left: 12%;
+  height: fit-content;
+  border-radius: 0px 0px 0px 50px;
+  background-color: #000000;
 }
 
 .area-parametros-alerta {
   /* border: 2px solid pink; */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-start;
   flex-direction: column;
+  background-color: #ffffff;
   width: 100%;
-  height: 240px;
+  height: 245px;
   margin: auto;
-  background-color: #282828;
+  border-radius: 50px 0px 0px 0px;
+  border-bottom: 1px solid #d6d6d6;
 }
 
 .area-parametros-alerta .titulo-legenda {
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: 600;
   align-self: flex-start;
   width: fit-content;
   margin: 10px 40px;
   font-size: 30px;
+  font-family: 'Akzidenz';
 
 }
 
@@ -151,15 +191,61 @@ body {
   margin-bottom: 10px;
   align-items: center;
   justify-content: center;
-  height: 90%;
+  height: 50%;
   display: flex;
-  width: 95%;
+  padding-left: 50px;
+  background-color: #ffffff;
+  width: 85%;
   gap: 20px;
 }
 
+.area-minhas-metricas {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    overflow: auto;
+    width: 18%;
+    border-left: 1px solid #cecece;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.escolhas-usuario{
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 360px;
+  width: 90%;
+  border-radius: 5px;
+  background-color:rgb(105, 26, 26);
+  color: #fff;
+
+}
+
+.titulo-escolhas{
+  font-family: 'Akzidenz';
+  color: #ffff;
+  font-size: 23px;
+}
+
+.dados-geral{
+  width:80%;
+  align-self: center;
+  align-items: center;
+  display: flex;
+  margin: auto;
+  color: #fff;
+}
 
 .item-regua {
-  width: 100%;
+  width: 70%;
+  background-color: #5c6bc0;
   text-align: center;
   height: 100%;
   display: flex;
@@ -180,32 +266,32 @@ body {
 }
 
 .perigo-frio {
-  background-color: #5c6bc0;
-  border: 2px solid #fff;
+  background-color:rgb(105, 26, 26);
+  border: 2px solid #000;
   color: #fff ;
 }
 
 .perigo-quente {
-  background-color: #5c6bc0;
-  border: 2px solid #fff;
+  background-color:rgb(105, 26, 26);
+  border: 2px solid #000;
   color: #fff ;
 }
 
 .alerta-frio {
-  background-color: #5c6bc0;
-  border: 2px solid #fff;
+  background-color: rgb(105, 26, 26);
+  border: 2px solid #000;
   color: #fff ;
 }
 
 .alerta-quente {
-  background-color: #5c6bc0;
-  border: 2px solid #fff;
+  background-color:rgb(105, 26, 26);
+  border: 2px solid #000;
   color: #fff ;
 }
 
 .ideal {
-  background-color: #5c6bc0;
-  border: 2px solid #fff;
+  background-color:rgb(105, 26, 26);
+  border: 2px solid #000;
   color: #fff ;
   
 }
@@ -214,23 +300,25 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: 350px;
+  height: 280px;
   gap: 70px;
   padding-top: 30px;
   width: 100%;
   align-items: center;
-  background-color: #000000;
+  background-color: #ffffff;
 }
 
 .cards2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: 300px;
+  height: 400px;
   gap: 40px;
   width: 100%;
-  padding-top: 40px;
-  align-items: flex-start;
+  padding-top: 20px;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius:  0px 0px 0px 50px;
 }
 
 .card-aquario {
@@ -287,19 +375,41 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 520px;
-  background-color: #fff;
+  width: 400px;
+  background-color: #ffffff;
+  border: #000 solid 1px;
   border-radius: 10px;
 }
 
+
 .grafico-barra {
+  color: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 375px;
-  background-color: #fff;
+  height: 250px;
   border-radius: 10px;
+  padding: 10px;
+}
+
+.grafico-barra .div-canvas{
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 220px;
+  padding: 20px;
+  border-radius: 10px;
+
+}
+
+.grafico-barra canvas {
+  color: #000;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
 }
 
 .temperatura,
@@ -332,7 +442,7 @@ body {
 }
 
 .tituloGraficos {
-  color: rgb(216, 216, 216);
+  color: rgb(0, 0, 0);
   display: flex;
   justify-content: center;
 }
@@ -343,8 +453,8 @@ body {
   font-weight: 600;
   font-size: 18px;
   padding: 10px 15px;
-  color: #e6005a;
-  background-color: white;
+  color: #ce8aa4;
+  background-color: rgb(176, 21, 150);
   margin: 5px;
   border-radius: 3px;
   cursor: pointer
@@ -377,21 +487,17 @@ body {
   display: block;
 }
 
-canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
 /* PAGINA DOS GRÁFICOS 2023 */
 
 .janela {
   display: flex;
+  background-color:rgb(0, 0, 0);
   /* width: 100vw; */
 }
 
 .header-left a {
   text-decoration: none;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .header-left {
@@ -400,12 +506,11 @@ canvas {
   left: 0;
   z-index: 999;
   height: 100vh;
-  width: 16%;
+  width: 12%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-right: 3px solid #32b9cd;
   background-color: #000000;
 }
 
@@ -413,28 +518,30 @@ canvas {
   display: flex;
   width: 70%;
   height: fit-content;
-  background-color: #6767ca;
   position: relative;
   top: 0;
   left: 25%;
-  height: 100vh;
+  height: 150vh;
   overflow: auto;
 }
 
 .header-left h1 {
-  color: #32b9cd;
+  align-self: center;
+  color: #ffffff;
 }
 
 .hello {
+  align-items: center;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .hello h3 {
-  color: #e3b062;
+  color: #ffffff;
   font-weight: 300;
   font-size: 1.2rem;
+  align-items: center;
 }
 
 .hello h3 span {
@@ -444,7 +551,7 @@ canvas {
 .btn-nav {
   width: 40%;
   color: white;
-  background-color: #e6005a;
+  background-color: #08e600;
   border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
@@ -453,14 +560,14 @@ canvas {
 .btn-nav-white {
   width: 40%;
   background-color: white;
-  border: 3px solid #e6005a;
+  border: 3px solid #304307;
   border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
 }
 
 .btn-nav-white h3 {
-  color: #e6005a;
+  color: #c69eae;
   padding: 0;
   margin: 0;
 }
@@ -475,11 +582,28 @@ canvas {
   margin: 0;
   padding: 0;
   width: 20%;
-  background-color: #32b9cd;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   border-radius: 10px;
   text-align: center;
   padding: 10px 15px;
   margin-bottom: 100px;
+  cursor: pointer;
+}
+
+.btn-refazer  a{
+  color: #000;
+  margin-bottom: 0%;
+  margin-top: 0%;
+
+}
+.btn-refazer {
+  padding-bottom: 40px;
+  width: 60%;
+  height: 60px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  text-align: center; 
   cursor: pointer;
 }
