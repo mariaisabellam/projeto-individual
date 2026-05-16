@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Tempo Real</title>
-    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./css/dashboards.css">
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -35,34 +35,25 @@
 
         <div class="dash">
             <div id="alerta"></div>
-            <!-- Cards do topo -->
+            Cards do topo 
             <div class="area-parametros-alerta">
                 <p class="titulo-legenda">DASHBOARD</p>
                 <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
+                    <div class="item-regua">
                         <p>Total de Usuários</p>
                         <p id="card-total-usuarios">—</p>
                     </div>
-                    <div class="item-regua alerta-frio">
+                    <div class="item-regua">
                         <p class="par-quiz">Quiz</p>
                         <p>Total Interações</p>
                         <p id="card-total-interacoes">—</p>
                     </div>
-                    <div class="item-regua ideal">
-                        <p class="par-quiz">Quiz</p>
-                        <p>Artista Mais Votado</p>
-                        <p id="card-artista-top">—</p>
-                    </div>
-                    <div class="item-regua alerta-quente">
-                        <p class="par-quiz">Quiz</p>
-                        <p>Gênero Mais Votado</p>
-                        <p id="card-genero-top">—</p>
-                    </div>
+                    
                 </div>
                 
             </div>
 
-            <!-- Gráficos de linha -->
+            Gráficos de linha 
             <div class="cards" id="cardAquarios">
                 <div class="grafico">
                     <div class="tipo-grafico"><p>Usuários Novos (hoje, por hora)</p></div>
@@ -74,7 +65,7 @@
                 </div>
             </div>
 
-            <!-- Gráficos de barra -->
+            Gráficos de barra 
             <div class="cards2" id="cardAquarios2">
                 <div class="grafico-barra">
                     <div class="tipo-grafico"><p>Artistas Favoritos</p></div>
@@ -102,6 +93,7 @@
         </div>
     </div>
 </body>
+</html>
 
 <script>
     
@@ -240,6 +232,4 @@ function criarOuAtualizarBarra(instancia, canvasId, label, labels, values) {
         atualizarDashboard();
         setInterval(atualizarDashboard, 10000);
     }
-</script>
-
-</html>
+</script> 

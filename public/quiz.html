@@ -9,7 +9,7 @@
   <link rel="icon" href="./assets/icon/logo.png">
 </head>
 
-<body onload="validarSessaoQuiz(); onloadEsconder()">
+<body onload="onloadEsconder()">  <!-- validarSessaoQuiz(); -->
   <div class="header">
     <div class="container">
       <div class="img-logo"><img src="./assets/imgs/logo.png" alt="logo" width="40px" height="40px"></div>
@@ -24,6 +24,7 @@
 
   <div class="quiz-container">
     <div class="container-perguntas">
+
       <div id="pontuacaoEJogo">
         <span id="titulo-quiz-quiz">Quiz</span>
         <h1 id="titulo-quiz">Quanto você sabe sobre o mundo Pop??</h1>
@@ -33,7 +34,21 @@
           <span class="btn-comecar">Começar</span>
         </button>
 
+        <!-- <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
+                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+            </div>
+            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                    <span id="spanPontuacaoFinal">***</span>
+                </span>
+                <span id="msgFinal" class="width-fit-content">***</span>
+            </div>
+        </div> -->
+ 
         <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+         
           <div id="infoQuestao" class="padding-8">
             <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span>/<span id="qtdQuestoes"></span></span>
           </div>
@@ -42,36 +57,37 @@
             <span id="spanQuestaoExibida" class="text-bold"></span>
           </div>
 
-          <div id="opcoes" class="flex-colunar padding-8">
+          <div class="cardsOpcoes">
             <div id="infoAlternativas" class="padding-8">
               <span><em>Escolha uma opção dentre as abaixo:</em></span>
             </div>
 
-            <div class="opcoes2">
+            <div id="opcoes">
               <div class="card-opcao">
                 <span>
-                  <input type="radio" id="opcao1" name="option" class="radio" value="0" />
-                  <label for="opcao1" class="option" id="labelOpcao1"></label>
+                  <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                  <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
                 </span>
               </div>
               <div class="card-opcao">
                 <span>
-                  <input type="radio" id="opcao2" name="option" class="radio" value="1" />
-                  <label for="opcao2" class="option" id="labelOpcao2"></label>
+                  <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                  <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
                 </span>
               </div>
               <div class="card-opcao">
                 <span>
-                  <input type="radio" id="opcao3" name="option" class="radio" value="2" />
-                  <label for="opcao3" class="option" id="labelOpcao3"></label>
+                  <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                  <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
                 </span>
               </div>
               <div class="card-opcao">
                 <span>
-                  <input type="radio" id="opcao4" name="option" class="radio" value="3" />
-                  <label for="opcao4" class="option" id="labelOpcao4"></label>
+                  <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                  <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
                 </span>
               </div>
+
             </div>
           </div>
           <div id="botoes" class="flex-colunar padding-8">
@@ -99,59 +115,73 @@
 </body>
 
 <script>
-  /*
-    Cada alternativa tem: texto (exibido), artista (ou null), genero (ou null).
-    Quando o usuário escolhe "Outro" em artista → artista: "Outro"
-    Quando o usuário escolhe "Outro" em gênero  → genero: "Outro"
-    Ambos aparecem normalmente nos gráficos da dashboard.
-    Alternativas de perguntas de comportamento não têm artista nem gênero → null → não contam nos gráficos.
-  */
+  
   const listaDeQuestoes = [
     {
       pergunta: "Quando você ouve música, você...",
-      alternativas: [
-        { texto: "Dança e canta como se estivesse no palco", artista: null, genero: null },
-        { texto: "Fecha os olhos e sente cada nota", artista: null, genero: null },
-        { texto: "Começa a analisar cada parte da música", artista: null, genero: null },
-        { texto: "Pega um instrumento e toca junto", artista: null, genero: null }
-      ]
+      alternativaA: "Dança e canta como se estivesse no palco",
+      alternativaB: "Fecha os olhos e sente cada nota",
+      alternativaC: "Começa a analisar cada parte da música",
+      alternativaD: "Pega um instrumento e toca junto",
+      alternativaCorreta: "alternativaC"
     },
+
     {
       pergunta: "Seu artista favorito é..",
-      alternativas: [
-        { texto: "Lana Del Rey", artista: "Lana Del Rey", genero: null },
-        { texto: "Sabrina Carpenter", artista: "Sabrina Carpenter", genero: null },
-        { texto: "PinkPantheress", artista: "PinkPantheress", genero: null },
-        { texto: "Chappell Roan", artista: "Chappell Roan", genero: null },
-        { texto: "Olivia Rodrigo", artista: "Olivia Rodrigo", genero: null },
-        { texto: "Outro", artista: "Outro", genero: null }
-      ]
+        alternativaA: "Lana Del Rey",
+        alternativaB: "Sabrina Carpenter",
+        alternativaC: "PinkPantheress", 
+        alternativaD: "Chappell Roan", 
+        alternativaCorreta: "alternativaD",
     },
     {
       pergunta: "Qual gênero você mais ouve?",
-      alternativas: [
-        { texto: "Pop", artista: null, genero: "Pop" },
-        { texto: "Rock", artista: null, genero: "Rock" },
-        { texto: "Indie", artista: null, genero: "Indie" },
-        { texto: "Outro", artista: null, genero: "Outro" }
-      ]
-    }
-  ];
+        alternativaA: "Pop",
+        alternativaB: "Rock",
+        alternativaC: "Indie",
+        alternativaD: "Outro",
+        alternativaCorreta: "alternativaD",
+    },
+    {
+      pergunta: "Qual gênero você mais ouve?",
+        alternativaA: "Pop",
+        alternativaB: "Rock",
+        alternativaC: "Indie",
+        alternativaD: "Outro",
+        alternativaCorreta: "alternativaD",
+    },
+    {
+      pergunta: "Qual gênero você mais ouve?",
+        alternativaA: "Pop",
+        alternativaB: "Rock",
+        alternativaC: "Indie",
+        alternativaD: "Outro",
+        alternativaCorreta: "alternativaD",
+    },
+  ]
 
-  let numeroDaQuestaoAtual = 0;
-  let indiceSelecionado = null;
+ // variáveis globais  
+    let fkUsuario = sessionStorage.ID_USUARIO  
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let tentativaIncorreta = 0
+    let certas = 0
+    let erradas = 0
+    let quantidadeDeQuestoes = listaDeQuestoes.length
+    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+
 
   function onloadEsconder() {
     document.getElementById('jogo').style.display = "none";
     document.getElementById('pontuacao').style.display = "none";
   }
 
-  function validarSessaoQuiz() {
-    if (!sessionStorage.ID_USUARIO) {
-      alert("Faça o login para acessar o quiz!");
-      window.location = "login.html";
-    }
-  }
+  // function validarSessaoQuiz() {
+  //   if (!sessionStorage.ID_USUARIO) {
+  //     alert("Faça o login para acessar o quiz!");
+  //     window.location = "login.html";
+  //   }
+  // }
 
   function iniciarQuiz() {
     document.getElementById('pontuacao').style.display = "none";
@@ -159,88 +189,138 @@
     document.getElementById('btnIniciarQuiz').style.display = "none";
     document.getElementById('titulo-quiz').style.display = "none";
     document.getElementById('titulo-quiz-quiz').style.display = "none";
-    document.getElementById('qtdQuestoes').innerHTML = listaDeQuestoes.length;
+    document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes;
 
-    numeroDaQuestaoAtual = 0;
-    exibirQuestao(0);
+    preencherHTMLcomQuestaoAtual(0)
 
-    document.getElementById('btnSubmeter').disabled = false;
-    document.getElementById('btnProx').disabled = true;
+
+    btnSubmeter.disabled = false
+    btnProx.disabled = true
   }
 
-  function exibirQuestao(index) {
-    indiceSelecionado = null;
-    desmarcarRadioButtons();
-
-    const questao = listaDeQuestoes[index];
-    document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = index + 1;
-    document.getElementById("spanQuestaoExibida").innerHTML = questao.pergunta;
-    document.getElementById("labelOpcao1").innerHTML = questao.alternativas[0].texto;
-    document.getElementById("labelOpcao2").innerHTML = questao.alternativas[1].texto;
-    document.getElementById("labelOpcao3").innerHTML = questao.alternativas[2].texto;
-    document.getElementById("labelOpcao4").innerHTML = questao.alternativas[3].texto;
-
+  function preencherHTMLcomQuestaoAtual(index) {
     habilitarAlternativas(true);
-  }
+    const questaoAtual = listaDeQuestoes[index];
+    numeroDaQuestaoAtual = index
+    console.log("questaoAtual")
+    console.log(questaoAtual)
 
-  function habilitarAlternativas(habilitar) {
-    ["opcao1", "opcao2", "opcao3", "opcao4"].forEach(id => {
-      document.getElementById(id).disabled = !habilitar;
-    });
-  }
-
-  function desmarcarRadioButtons() {
-    document.getElementsByName("option").forEach(r => r.checked = false);
+    document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+    document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+    document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+    document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+    document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+    document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
   }
 
   function submeter() {
-    const opcoes = document.getElementsByName("option");
-    let escolhida = null;
-    opcoes.forEach(opcao => {
-      if (opcao.checked) escolhida = parseInt(opcao.value);
-    });
+      const options = document.getElementsByName("option"); // recupera alternativas no html
 
-    if (escolhida === null) {
-      alert("Escolha uma opção antes de submeter.");
-      return;
-    }
-
-    indiceSelecionado = escolhida;
-    document.getElementById('btnSubmeter').disabled = true;
-    document.getElementById('btnProx').disabled = false;
-    habilitarAlternativas(false);
-
-    const alternativa = listaDeQuestoes[numeroDaQuestaoAtual].alternativas[indiceSelecionado];
-
-    fetch("/quiz/salvarResposta", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        idUsuario: sessionStorage.ID_USUARIO,
-        artista: alternativa.artista,
-        genero: alternativa.genero
-      })
-    })
-      .then(res => { if (!res.ok) console.error("Erro ao salvar resposta"); })
-      .catch(err => console.error("Erro na requisição:", err));
-  }
-
-  function avancar() {
-    numeroDaQuestaoAtual++;
-
-    if (numeroDaQuestaoAtual < listaDeQuestoes.length) {
-      if (numeroDaQuestaoAtual === listaDeQuestoes.length - 1) {
-        alert("Atenção... a próxima é a última questão!");
+      let hasChecked = false
+      for (let i = 0; i < options.length; i++) {
+          if (options[i].checked) {
+              hasChecked = true
+              break
+          }
       }
-      exibirQuestao(numeroDaQuestaoAtual);
-      document.getElementById('btnSubmeter').disabled = false;
-      document.getElementById('btnProx').disabled = true;
-    } else {
-      finalizarJogo();
-    }
-  }
 
-  function finalizarJogo() {
+      if (!hasChecked) {
+       alert("Não há alternativas escolhidas. Escolha uma opção.")
+      } else {
+          btnSubmeter.disabled = true
+          btnProx.disabled = false
+
+          habilitarAlternativas(false)
+
+          checarResposta()
+        }
+    }
+
+    function habilitarAlternativas(trueOrFalse) {
+        let opcaoEscolhida = trueOrFalse ? false : true
+
+        primeiraOpcao.disabled = opcaoEscolhida
+        segundaOpcao.disabled = opcaoEscolhida
+        terceiraOpcao.disabled = opcaoEscolhida
+        quartaOpcao.disabled = opcaoEscolhida
+
+    } 
+
+    function avancar() {
+        btnProx.disabled = true
+        btnSubmeter.disabled = false
+
+        desmarcarRadioButtons()
+
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+            alert("Atenção... a próxima é a ultima questão!")
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else {
+            finalizarJogo()
+        }
+        limparCoresBackgroundOpcoes()
+    }
+
+    function tentarNovamente(){
+        // atualiza a página
+        wind.location.reload()
+    }
+
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let alternativaCorreta = null // variável para armazenar a alternativa correta
+
+        options.forEach((option) => {
+            if (option.value === respostaQuestaoAtual) {
+                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
+                alternativaCorreta = option.labels[0].id
+            }
+        })
+
+        // verifica se resposta assinalada é correta
+        options.forEach((option) => {
+            if (option.checked === true && option.value === respostaQuestaoAtual) {
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                pontuacaoFinal++
+                certas++
+                // document.getElementById("spanCertas").innerHTML = certas
+                numeroDaQuestaoAtual++
+            } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                const wrongLabelId = option.labels[0].id
+
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                tentativaIncorreta++
+                erradas++
+                // document.getElementById("spanErradas").innerHTML = erradas
+                numeroDaQuestaoAtual++
+            }
+        })
+    }
+
+    function limparCoresBackgroundOpcoes() {
+        const options = document.getElementsByName("option");
+        options.forEach((option) => {
+            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+        })
+    }
+
+    function desmarcarRadioButtons() {
+        const options = document.getElementsByName("option");
+        for (let i = 0; i < options.length; i++) {
+            options[i].checked = false;
+        }
+    }
+
+    function finalizarJogo() {
+    
     document.getElementById('pontuacao').style.display = "flex";
     document.getElementById('opcoes').style.display = "none";
     document.getElementById('infoQuestao').style.display = "none";
@@ -251,13 +331,55 @@
     document.getElementById('btnVerResultado').disabled = false;
   }
 
-  function tentarNovamente() {
-    window.location.reload();
-  }
-  function verResultado() {
-    window.location = "./dashboard/dashboard.html";
+  btnProx.disabled = true
+  btnSubmeter.disabled = true
 
+  
+
+  function verResultado() {
+    
+      fetch("/quiz/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        fkUsuarioServer: fkUsuario,
+        totalAcertosServer: certas,
+        totalErrosServer: erradas
+        // idEmpresaVincularServer: idEmpresaVincular,
+        //cpfServer: cpfVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+        
+        setTimeout(() => {
+          window.location = "dashboard.html";
+        }, "2000");
+
+        // if (resposta.ok) {
+        //   cardErro.style.display = "block";
+
+          // mensagem_erro.innerHTML =
+          //   "Quiz realizado com sucesso! Redirecionando para tela de Dashboard...";
+
+
+          //limparFormulario();
+        // } else {
+        //   throw "Houve um erro ao tentar realizar o quiz!";
+        // }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+
+    return false;
   }
+   
 </script>
 
 </html>
