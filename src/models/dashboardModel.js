@@ -1,61 +1,104 @@
-// var database = require("../database/config");
+var database = require("../database/config")
 
-// function buscarPorId(id) {
-//   var instrucaoSql = `SELECT * resposta_usuario WHERE fkArtista = '${id}'`;
-//   return database.executar(instrucaoSql);
-// }
+function buscarPorId(id) {
+  console.log("ACESSEI O USUARIO MODEL")
+  var instrucaoSql =
+    `SELECT fkUsuario, totalAcertos, totalErros FROM resposta_usuario WHERE fkUsuario = '${id}'`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
 
-// function listar() {
-//   var instrucaoSql = `SELECT idArtista, nome FROM artista`;
+function listarTotalUsuarios() {
+  var instrucaoSql =
+    `SELECT COUNT(id) 
+    FROM usuario`;
 
-//   return database.executar(instrucaoSql);
-// }
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
 
-// function buscarPorGenero(generoMusical) {
-//   var instrucaoSql = `SELECT * FROM resposta_usuario WHERE generoEscolhido = '${generoMusical}'`;
+function listarTotalInteracoesQuiz() {
+  var instrucaoSql =
+    `SELECT fkUsuario, COUNT(*) 
+	  FROM resposta_usuario 
+    GROUP BY fkUsuario
+    ORDER BY fkUsuario`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
 
-//   return database.executar(instrucaoSql);
-// }
+function listarRanking() {
+  var instrucaoSql =
+    `SELECT r.fkUsuario,
+	  u.nome,
+	  MAX(r.totalAcertos) AS maior_posicao,
+    MAX(r.data_resposta) AS recente
+    FROM resposta_usuario r
+    JOIN usuario u ON 
+    r.fkUsuario = u.id
+    GROUP BY r.fkUsuario, u.nome
+    ORDER BY maior_posicao DESC, recente DESC`;
 
-// function cadastrar(nomeArtista, generoMusical) {
-//   var instrucaoSql = `INSERT INTO resposta_usuario (fkArtista, generoMusical) VALUES ('${nomeArtista}', '${generoMusical}')`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
 
-//   return database.executar(instrucaoSql);
-// }
+function listarMediaGeral() {
+  var instrucaoSql =
+    `SELECT ROUND(AVG(totalAcertos/ 10 * 100), 2) AS mediaAcertos_geral
+		FROM resposta_usuario`;
 
-// module.exports = { 
-//     buscarPorGenero, 
-//     buscarPorId, 
-//     cadastrar, 
-//     listar 
-//   };
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+
+}
+
+function listarMediaUsuario(fkUsuario) {
+  var instrucaoSql =
+    `SELECT fkUsuario,
+	  ROUND(AVG(totalAcertos/10 * 100),0) AS mediaAcertos_usuario
+		FROM resposta_usuario
+    WHERE fkUsuario = '${fkUsuario}'
+	  GROUP BY fkUsuario`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function listarAcertos(fkUsuario) {
+
+  // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+  //  e na ordem de inserção dos dados.
+  var instrucaoSql = `
+        SELECT fkUsuario, totalAcertos 
+        FROM resposta_usuario 
+        WHERE fkUsuario = '${fkUsuario}' 
+        ORDER BY id DESC 
+        LIMIT 1`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function listarErros(fkUsuario) {
+  var instrucaoSql = `
+         SELECT fkUsuario, totalErros 
+         FROM resposta_usuario 
+         WHERE fkUsuario = '${fkUsuario}' 
+         ORDER BY id DESC 
+         LIMIT 1`;
+
+  return database.executar(instrucaoSql);
+}
 
 
-//   var database = require("../database/config")
-  
-//   function autenticar(id) {
-//       console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
-//       var instrucaoSql = `
-//           SELECT id, nome, email FROM usuario WHERE email = '${email}' AND senha = '${senha}';
-//       `;
-//       console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//       return database.executar(instrucaoSql);
-//   }
-  
-//   // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-//   function cadastrar(nome, email, senha) {
-//       console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
-      
-//       // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-//       //  e na ordem de inserção dos dados.
-//       var instrucaoSql = `
-//           INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
-//       `;
-//       console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//       return database.executar(instrucaoSql);
-//   }
-  
-//   module.exports = {
-//       autenticar,
-//       cadastrar
-//   };
+module.exports = {
+  buscarPorId,
+  listarTotalUsuarios,
+  listarTotalInteracoesQuiz,
+  listarRanking,
+  listarMediaGeral,
+  listarMediaUsuario,
+  listarAcertos,
+  listarErros
+};

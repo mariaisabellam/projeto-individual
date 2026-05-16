@@ -12,8 +12,8 @@ router.get("/buscar/:id", function (req, res) {
   quizController.buscarPorId(req, res);
 });
 
-router.get("/listar", function (req, res) {
-  quizController.listar(req, res);
-});
+// router.get("/listar", function (req, res) {
+//   quizController.listar(req, res);
+// });
 
 module.exports = router;

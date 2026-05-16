@@ -1,47 +1,92 @@
-// var dashboardModel = require("../models/dashboardModel");
+var dashboardModel = require("../models/dashboardModel");
 
-// function buscarPorGenero(req, res) {
-//   var generoMusical = req.query.generoMusical;
+function buscarPorId(req, res) {
+    var id = req.query.id;
 
-//   dashboardModel.buscarPorGenero(generoMusical).then((resultado) => {
-//     res.status(200).json(resultado);
-//   });
-// }
+    if (id == undefined) {
+        res.status(400).send("Seu id está undefined!");
+    } else {
+        dashboardModel.buscarPorId(id)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
 
-// function listar(req, res) {
-//   dashboardModel.listar().then((resultado) => {
-//     res.status(200).json(resultado);
-//   });
-// }
+                    if (resultado.length > 0) {
+                        res.json(resultado)
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            )
+    }
+}
 
-// function buscarPorId(req, res) {
-//   var id = req.params.id;
+function listarTotalUsuarios(req, res) {
+  dashboardModel.listarTotalUsuarios()
+  .then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
 
-//   dashboardModel.buscarPorId(id).then((resultado) => {
-//     res.status(200).json(resultado);
-//   });
-// }
+function listarTotalInteracoesQuiz(req, res) {
+    dashboardModel.listarTotalInteracoesQuiz()
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    });
+    
+}
 
-// function cadastrar(req, res) {
-//   var generoMusical = req.body.generoMusical;
-//   var nomeArtista = req.body.nomeArtista;
+function listarRanking(req, res) {
+   dashboardModel.listarRanking()
+    .then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
 
-//   dashboardModel.buscarPorGenero(generoMusical).then((resultado) => {
-//     if (resultado.length > 0) {
-//       res
-//         .status(401)
-//         .json({ mensagem: `o generoMusical ${generoMusical} já existe` });
-//     } else {
-//       dashboardModel.cadastrar(nomeArtista, generoMusical).then((resultado) => {
-//         res.status(201).json(resultado);
-//       });
-//     }
-//   });
-// }
+function listarMediaGeral(req, res) {
+   dashboardModel.listarMediaGeral()
+    .then((resultado) => {
+    res.status(200).json(resultado)
+  });
+        
+}
 
-// module.exports = {
-//   buscarPorGenero,
-//   buscarPorId,
-//   cadastrar,
-//   listar,
-// };
+function listarMediaUsuario(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+    dashboardModel.listarMediaUsuario(fkUsuario)
+    .then((resultado) => {
+        res.status(200).json(resultado)
+    });
+}
+
+function listarAcertos(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+    dashboardModel.listarAcertos(fkUsuario)
+    .then((resultado) => {
+        res.status(200).json(resultado)
+    })
+}
+
+function listarErros(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+    dashboardModel.listarErros(fkUsuario)
+    .then((resultado) => {
+        res.status(200).json(resultado);
+    })
+}
+
+module.exports = {
+    buscarPorId,
+    listarTotalUsuarios,
+    listarTotalInteracoesQuiz,
+    listarRanking,
+    listarMediaGeral,
+    listarMediaUsuario,
+    listarAcertos,
+    listarErros
+};

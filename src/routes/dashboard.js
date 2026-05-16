@@ -1,24 +1,29 @@
-// var express = require("express");
-// var router = express.Router();
+var express = require("express");
+var router = express.Router();
 
-// router.get("/artistas", function (req, res) {
-//     dashboardController.listarArtistas(req, res);
-// });
+var dashboardController = require("../controllers/dashboardController");
 
-// router.get("/generos", function (req, res) {
-//     dashboardController.listarGeneros(req, res);
-// });
+router.get("/buscar/:id", function (req, res) {
+    dashboardController.buscarPorId(req, res);
+});
+router.get("/listarAcertos", function (req, res) {
+    dashboardController.listarAcertos(req, res);
+});
 
-// router.get("/interacoes-por-hora", function (req, res) {
-//     dashboardController.listarInteracoesPorHora(req, res);
-// });
+router.get("/listarErros", function (req, res) {
+    dashboardController.listarErros(req, res);
+});
 
-// router.get("/usuarios-por-hora", function (req, res) {
-//     dashboardController.listarUsuariosPorHora(req, res);
-// });
+router.get("/listarRanking", function (req, res) {
+    dashboardController.listarRanking(req, res);
+});
 
-// router.get("/totais", function (req, res) {
-//     dashboardController.listarTotais(req, res);
-// });
+router.get("/listarMediaGeral", function (req, res) {
+    dashboardController.listarMediaGeral(req, res);
+});
 
-// module.exports = router;
+router.get("/listarMediaUsuario", function (req, res) {
+    dashboardController.listarMediaUsuario(req, res);
+});
+
+module.exports = router;
