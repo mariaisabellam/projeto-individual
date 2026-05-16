@@ -26,7 +26,7 @@
     <div class="container-perguntas">
       <div id="pontuacaoEJogo">
         <span id="titulo-quiz-quiz">Quiz</span>
-        <h1 id="titulo-quiz">Descubra seu perfil musical!</h1>
+        <h1 id="titulo-quiz">Quanto você sabe sobre o mundo Pop??</h1>
 
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">
           <img src="https://api.iconify.design/arcticons:discogs.svg" width="24" height="24" />
@@ -74,20 +74,23 @@
               </div>
             </div>
           </div>
+          <div id="botoes" class="flex-colunar padding-8">
+          <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+          <button onclick="avancar()" id="btnProx">Avançar para próxima questão</button>
+        </div>
 
           <div id="pontuacao" class="card-pontuacao">
             <div class="resultado">
               <span>Parabéns por concluir!</span>
-              <span id="titulo-resultado">Seu perfil musical foi registrado!</span>
+              <span id="titulo-resultado">Seu resultado foi registrado!</span>
             </div>
+            <div class="btns">
             <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
             <button onclick="verResultado()" id="btnVerResultado" disabled>Ver resultado</button>
           </div>
+        </div>
 
-          <div id="botoes" class="flex-colunar padding-8">
-            <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-            <button onclick="avancar()" id="btnProx">Avançar para próxima questão</button>
-          </div>
+          
         </div>
 
       </div>
