@@ -35,7 +35,8 @@ function listarRanking() {
     JOIN usuario u ON 
     r.fkUsuario = u.id
     GROUP BY r.fkUsuario, u.nome
-    ORDER BY maior_posicao DESC, resposta_recente DESC`;
+    ORDER BY maior_posicao DESC, resposta_recente DESC
+    LIMIT 5`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
