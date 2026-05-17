@@ -7,26 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Tempo Real</title>
-    <link rel="stylesheet" href="./css/dashboards.css">
-    <script src="../js/sessao.js"></script>
-    <script src="../js/alerta.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="./css/dashboards.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
-<body onload="validarSessao(); iniciarDashboard()">
+<body onload="exibirDashboardUsuario()">
+
     <div class="janela">
         <div class="header-left">
             <img src="../assets/imgs/logo.png" width="50px" height="50px">
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
-            <div class="btn-refazer"> 
-                <a href="../quiz.html">
+            <div class="btn-refazer">
+                <a href="./quiz.html">
                     <h3>Refazer Quiz</h3>
                 </a>
-                
             </div>
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
@@ -35,7 +36,7 @@
 
         <div class="dash">
             <div id="alerta"></div>
-            Cards do topo 
+            <!-- KPIS do topo  -->
             <div class="area-parametros-alerta">
                 <p class="titulo-legenda">DASHBOARD</p>
                 <div class="parametros-alerta">
@@ -48,188 +49,213 @@
                         <p>Total Interações</p>
                         <p id="card-total-interacoes">—</p>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
 
-            Gráficos de linha 
+            <!-- Gráficos de linha  -->
             <div class="cards" id="cardAquarios">
                 <div class="grafico">
-                    <div class="tipo-grafico"><p>Total de acertos:</p></div>
-                    <div class="div-canvas"><canvas id="myChart"></canvas></div>
+                    <div class="tipo-grafico">
+                        <p>Total de acertos:</p>
+                    </div>
+                    <div class="div-canvas"><p id="card-total-acertos"></p></div>
                 </div>
                 <div class="grafico">
-                    <div class="tipo-grafico"><p>Total de erros:</p></div>
-                    <div class="div-canvas"><canvas id="myChart1"></canvas></div>
+                    <div class="tipo-grafico">
+                        <p>Total de erros:</p>
+                    </div>
+                    <div class="div-canvas"><p id="card-total-erros"></p></div>
                 </div>
             </div>
 
-            Gráficos de barra 
+            <!-- Gráficos de barra  -->
             <div class="cards2" id="cardAquarios2">
                 <div class="grafico-barra">
-                    <div class="tipo-grafico"><p>Ranking dos jogadores</p></div>
-                    <div class="div-canvas"><canvas id="myChart2"></canvas></div>
+                    <div class="tipo-grafico">
+                        <p>Ranking dos jogadores</p>
+                    </div>
+                    <div class="div-canvas"><canvas id="myChart"></canvas></div>
                 </div>
                 <div class="grafico-barra">
-                    <div class="tipo-grafico"><p>Você ficou entre os </p></div>
-                    <div class="div-canvas"><canvas id="myChart3"></canvas></div>
+                    <div class="tipo-grafico">
+                        <p>Você ficou entre os </p>
+                    </div>
+                    <div class="div-canvas"><p id="card-posicaoEntreOsMelhores"></p></div>
                 </div>
             </div>
         </div>
-        <div class="area-minhas-metricas">
+        <!-- <div class="area-minhas-metricas">
             <div class="escolhas-usuario">
                 <div class="dados-escolha-quiz">
                     <p class="titulo-escolhas">SUAS ESCOLHAS</p>
                     <p>Gênero Favorito: <span id="genero-fav">***</span></p>
                     <p>Artista Favorito: <span id="artista-fav">***</span></p>
                     <p>Seu Perfil musical: <span id="perfil-musical">***</span></p>
-                        
+
                 </div>
                 <div class="dados-geral">
                     <p>Você e outros <span id="porc-usuarios">*** gostam desse artista!</span></p>
                 </div>
-            </div>        
-        </div>
+            </div>
+        </div> -->
     </div>
 </body>
+
 </html>
 
 <script>
-    
-   const HORAS = ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'];
 
-    function horasParaArray24(dados) {
-        const arr = new Array(24).fill(0);
-        dados.forEach(item => { 
-            arr[item.hora] = Number(item.total); 
-        });
-        return arr;
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    let idUsuario = sessionStorage.ID_USUARIO;
+
+   window.onload = exibirDashboardUsuario();
+
+   // assim que carregar a pagina, essa funcao irá chamar as outras 
+    function exibirDashboardUsuario() {
+        obterDadosGrafico(idUsuario)
+        atualizarDashboard()
     }
 
-    function criarOuAtualizarLinha(instancia, canvasId, label, dados) {
-        const values = horasParaArray24(dados);
-        if (instancia) {
-            instancia.data.datasets[0].data = values;
-            instancia.update();
-            return instancia;
-        }
-        return new Chart(document.getElementById(canvasId), {
-            type: 'line',
-            data: {
-                labels: HORAS,
-                datasets: [{
-                    label: label,
-                    borderColor: 'rgb(181, 22, 22)',
-                    backgroundColor: 'rgba(181, 22, 22, 0.1)',
-                    data: values,
-                    borderWidth: 3,
-                    tension: 0.3
-                }]
-            },
-         options: { 
-    animation: false,
-    scales: { 
-        y: { beginAtZero: true },
-        x: {
-            grid: { 
-                display: false },
-            
-            ticks: {
-                callback: function(val, index) {
-                    return index % 2 === 0 ? HORAS[index] : '';
+    function obterDadosGrafico(idUsuario) {
+
+        // PARA PLOTAR GRAFICOS 
+        fetch(`/dashboard/listarRanking/`)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+                        .then(function (resposta) {
+                            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                            plotarGrafico(resposta, idUsuario);
+                        });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
                 }
-            }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    function plotarGrafico(resposta, idUsuario) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+         let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Total de Acertos',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+       for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.nome_usuario);
+            dados.datasets[0].data.push(registro.maior_posicao);
         }
-    } 
+
+         // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'bar',
+            data: dados,
+            options: {
+            indexAxis: 'y'
 }
-      
-        });
-    }
-function criarOuAtualizarBarra(instancia, canvasId, label, labels, values) {
-    const cores = [
-        '#a11a10',
-        '#0e4580',
-        '#16662e',
-        '#cfc01d',
-        'rgba(141, 22, 181, 0.7)',
-    ];
+        };
 
-    if (instancia) {
-        instancia.data.labels = labels;
-        instancia.data.datasets[0].data = values;
-        instancia.data.datasets[0].backgroundColor = labels.map((_, i) => cores[i % cores.length]);
-        instancia.update();
-        return instancia;
-    }
-    return new Chart(document.getElementById(canvasId), {
-    type: 'pie',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: label,
-            data: values,
-            backgroundColor: labels.map((_, i) => cores[i % cores.length]),
-            borderWidth: 3
-        }]
-    },
-    options: { 
-        animation: false,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: 'right'
-            }
-        }
-    }
-});
-
-}   function atualizarDashboard() {
-        fetch("/quiz/totais")
-            .then(res => res.json())
-            .then(dados => {
-                document.getElementById("card-total-usuarios").innerHTML   = dados.totalUsuarios;
-                document.getElementById("card-total-interacoes").innerHTML = dados.totalInteracoes;
-            });
-
-        fetch("/quiz/usuarios-por-hora")
-            .then(res => res.json())
-            .then(dados => {
-                chartUsuarios = criarOuAtualizarLinha(chartUsuarios, 'myChart', 'Novos Usuários', dados);
-            });
-
-        fetch("/quiz/interacoes-por-hora")
-            .then(res => res.json())
-            .then(dados => {
-                chartInteracoes = criarOuAtualizarLinha(chartInteracoes, 'myChart1', 'Interações com o Quiz', dados);
-            });
-
-        fetch("/quiz/artistas")
-            .then(res => res.json())
-            .then(dados => {
-                if (dados.length > 0)
-                    document.getElementById("card-artista-top").innerHTML = dados[0].artista;
-                chartArtistas = criarOuAtualizarBarra(
-                    chartArtistas, 'myChart2', 'Total de votos',
-                    dados.map(i => i.artista), dados.map(i => Number(i.totalArtistas))
-                );
-            });
-
-        fetch("/quiz/generos")
-            .then(res => res.json())
-            .then(dados => {
-                if (dados.length > 0)
-                    document.getElementById("card-genero-top").innerHTML = dados[0].genero;
-                chartGeneros = criarOuAtualizarBarra(
-                    chartGeneros, 'myChart3', 'Gêneros Favoritos',
-                    dados.map(i => i.genero), dados.map(i =>Number(i.total))
-                );
-            });
+        let myChart = new Chart(
+            document.getElementById(`myChart`),
+            config
+        );
     }
 
-    // Atualiza ao carregar e a cada 10 segundos
-    function iniciarDashboard() {
-        atualizarDashboard();
-        setInterval(atualizarDashboard, 10000);
-    }
-</script> 
+    function atualizarDashboard() {
+
+        // PARA KPI 
+        fetch(`/dashboard/listarTotalUsuarios/`)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+                    .then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        document.getElementById("card-total-usuarios").innerHTML = resposta[0].total_usuarios
+                           
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+              .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ KPI: ${error.message}`);
+            });
+
+        fetch(`/dashboard/listarTotalInteracoesQuiz/`)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+                    .then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        document.getElementById("card-total-interacoes").innerHTML = resposta[0].total_interacoes
+                           
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+              .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ KPI: ${error.message}`);
+            });
+
+        fetch(`/dashboard/listarAcertos/${idUsuario}`)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+                    .then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        document.getElementById("card-total-acertos").innerHTML = resposta[0].totalAcertos
+                           
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+              .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ Metrica: ${error.message}`);
+            });
+
+        fetch(`/dashboard/listarErros/${idUsuario}`)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+                    .then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        document.getElementById("card-total-erros").innerHTML = resposta[0].totalErros
+                           
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+              .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ Metrica: ${error.message}`);
+            });
+
+        
+
+
+    }</script>

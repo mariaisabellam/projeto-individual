@@ -1,7 +1,7 @@
 var dashboardModel = require("../models/dashboardModel");
 
 function buscarPorId(req, res) {
-    var id = req.query.id;
+    var id = req.params.id;
 
     if (id == undefined) {
         res.status(400).send("Seu id está undefined!");

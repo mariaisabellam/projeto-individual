@@ -6,11 +6,20 @@ var dashboardController = require("../controllers/dashboardController");
 router.get("/buscar/:id", function (req, res) {
     dashboardController.buscarPorId(req, res);
 });
-router.get("/listarAcertos", function (req, res) {
+
+router.get("/listarTotalUsuarios", function (req, res) {
+    dashboardController.listarTotalUsuarios(req, res);
+});
+
+router.get("/listarTotalInteracoesQuiz", function (req, res) {
+    dashboardController.listarTotalInteracoesQuiz(req, res);
+});
+
+router.get("/listarAcertos/:fkUsuario", function (req, res) {
     dashboardController.listarAcertos(req, res);
 });
 
-router.get("/listarErros", function (req, res) {
+router.get("/listarErros/:fkUsuario", function (req, res) {
     dashboardController.listarErros(req, res);
 });
 

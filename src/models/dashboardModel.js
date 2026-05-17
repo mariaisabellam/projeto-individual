@@ -10,7 +10,7 @@ function buscarPorId(id) {
 
 function listarTotalUsuarios() {
   var instrucaoSql =
-    `SELECT COUNT(id) 
+    `SELECT COUNT(id) AS total_usuarios
     FROM usuario`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -19,10 +19,8 @@ function listarTotalUsuarios() {
 
 function listarTotalInteracoesQuiz() {
   var instrucaoSql =
-    `SELECT fkUsuario, COUNT(*) 
-	  FROM resposta_usuario 
-    GROUP BY fkUsuario
-    ORDER BY fkUsuario`;
+    `SELECT COUNT(*) AS total_interacoes
+	  FROM resposta_usuario `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -30,14 +28,14 @@ function listarTotalInteracoesQuiz() {
 function listarRanking() {
   var instrucaoSql =
     `SELECT r.fkUsuario,
-	  u.nome,
+	  u.nome AS nome_usuario,
 	  MAX(r.totalAcertos) AS maior_posicao,
-    MAX(r.data_resposta) AS recente
+    MAX(r.data_resposta) AS resposta_recente
     FROM resposta_usuario r
     JOIN usuario u ON 
     r.fkUsuario = u.id
     GROUP BY r.fkUsuario, u.nome
-    ORDER BY maior_posicao DESC, recente DESC`;
+    ORDER BY maior_posicao DESC, resposta_recente DESC`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
